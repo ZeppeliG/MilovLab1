@@ -143,16 +143,26 @@ class Work1:
         return 0
     
     def Histogramma1(self, Arr1, Arr2):
+        plt.title("Histogramma of frequency")
+        plt.xlabel("# of group")
+        plt.ylabel("Frequency")
         plt.bar(Arr1, Arr2, width = 0.1, color = 'red')
         plt.show()
         return 0
     
     def Histogramma2(self, Arr1, Arr2):
+        plt.title("Histograma of relative frequency in %")
+        plt.xlabel("# of group")
+        plt.ylabel("Relative frequency")
         plt.bar(Arr1, Arr2)
         plt.show()
         return 0
     
     def Histogramma3(self, Arr1, Arr2):
+        plt.figure(figsize=(9, 9), constrained_layout=True)
+        plt.title("Histograma of estimation of the probability density")
+        plt.xlabel("Interval")
+        plt.ylabel("Dencity")
         plt.bar(Arr1, Arr2, width = 1)
         plt.show()
         return 0
@@ -163,6 +173,7 @@ class Work1:
         x = linspace(min(AH['Power']), max(AH['Power']), 1000)
         print ("Kernel Density Estimation:")
         plot(x, my_density(x), 'r')
+        return 0
         
         
         
