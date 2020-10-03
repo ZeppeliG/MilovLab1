@@ -9,8 +9,10 @@ import math
 import xlrd
 from prettytable import PrettyTable
 import matplotlib.pyplot as plt
-#import SciPy
-
+from scipy.stats.kde import gaussian_kde
+from numpy import linspace, hstack
+from pylab import plot, show, hist
+import pandas as pd
 
 class Work1:
     def __init__(self, Array):
@@ -20,6 +22,7 @@ class Work1:
         self.m = self.Rounding(self.m)
         print ("Num of groups: " + str(self.m))
         self.Group(self.N, self.m)
+        self.Kernel()
         
     def Group(self, N, m):
         self.Del = (max(Array) - min(Array))/m
@@ -154,7 +157,12 @@ class Work1:
         plt.show()
         return 0
     
-    #def Kernel(self, )
+    def Kernel(self):
+        AH = pd.read_csv('Auto.txt', sep = "\t", header = 0, index_col = False)
+        my_density = gaussian_kde(AH['Power'])
+        x = linspace(min(AH['Power']), max(AH['Power']), 1000)
+        print ("Kernel Density Estimation:")
+        plot(x, my_density(x), 'r')
         
         
         
