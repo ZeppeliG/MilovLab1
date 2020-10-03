@@ -9,8 +9,7 @@ import math
 import xlrd
 from prettytable import PrettyTable
 import matplotlib.pyplot as plt
-
-
+#import SciPy
 
 
 class Work1:
@@ -35,7 +34,6 @@ class Work1:
             self.C.append(self.Borders(self.C[self.i], self.Del))
             print ("C" + str(self.i+2) + " is " + str(self.C[self.i+1]))
             self.i=self.i+1
-        print (self.C)
         
         self.CA = []
         self.i = 0
@@ -84,11 +82,14 @@ class Work1:
         self.K = 0
         self.Inter = []
         while self.K < m:
-            self.Inter.append(str(self.C[self.K]) + ' - ' + str(self.C[self.K + 1]))
+            self.Inter.append("[" + str(self.C[self.K]) + ';' + str(self.C[self.K + 1]) + ")")
             self.K = self.K + 1
             
+        print ("Histogramma of frequency")
         self.Histogramma1(self.NumOfGroup, self.F)
+        print ("Histograma of relative frequency in %")
         self.Histogramma2(self.NumOfGroup, self.PercentRelF)
+        print ("Histograma of estimation of the probability density")
         self.Histogramma3(self.Inter, self.Den)
         
         return 0
@@ -127,7 +128,7 @@ class Work1:
         self.DataArray = []
         self.CC = 0
         while self.CC < m:
-            self.DataArray.extend([self.CC+1, str(C[self.CC]) + " - " + str(C[self.CC+1]), CA[self.CC], GA[self.CC], F[self.CC], RelF[self.CC]])
+            self.DataArray.extend([self.CC+1,"[" + str(C[self.CC]) + ";" + str(C[self.CC+1]) + ")", CA[self.CC], GA[self.CC], F[self.CC], RelF[self.CC]])
             self.CC=self.CC+1
         self.col = len(self.th)
         self.table = PrettyTable(self.th)
@@ -147,10 +148,13 @@ class Work1:
         plt.bar(Arr1, Arr2)
         plt.show()
         return 0
+    
     def Histogramma3(self, Arr1, Arr2):
         plt.bar(Arr1, Arr2, width = 1)
         plt.show()
         return 0
+    
+    #def Kernel(self, )
         
         
         
@@ -168,4 +172,3 @@ print ("Max " + str(max(Array)))
 
 
 Work1(Array)
-
