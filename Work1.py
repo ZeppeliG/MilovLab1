@@ -186,13 +186,17 @@ class Work1:
         self.X_Mid = self.summator / N
         self.Med = np.percentile(Array, 50)
         self.R = max(Array) - min(Array)
-        self.IQR = np.percentile(Array, 25) - np.percentile(Array, 75)
+        self.IQR = np.percentile(Array, 75) - np.percentile(Array, 25)
         self.summator = 0
         self.e = 0
         for self.e in Array:
-            self.summator = self.summator + (self.e - self.X_Mid)
+            self.summator = self.summator + abs(self.e - self.X_Mid)
         self.D_Mid = self.summator / N
-        self.S = math.sqrt((self.summator * self.summator) / (N - 1))
+        self.summator = 0
+        self.e = 0
+        for self.e in Array:
+            self.summator = self.summator + (self.e - self.X_Mid)**2
+        self.S = math.sqrt(self.summator / (N - 1))
         self.Disp = self.S * self.S
         self.V = (self.S / self.X_Mid) * 100
         self.th = ['Sample characteristics', 'Values']                    #
